@@ -43,6 +43,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.atom</groupId>
+            <artifactId>atom-framework</artifactId>
+            <version>3.0</version>
+        </dependency>
     </dependencies>
 
     <build>

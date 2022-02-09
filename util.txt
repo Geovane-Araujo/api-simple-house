@@ -1,0 +1,1 @@
+install:install-file -Dfile=uteis\atom-framework-3.0.jar -DgroupId=org.atom -DartifactId=atom-framework -Dversion=3.0
