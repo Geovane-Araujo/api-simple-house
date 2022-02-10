@@ -18,4 +18,5 @@ public class Users {
     private String email;
     private String senha;
     private boolean confirmation;
+    private String tenant;
 }
