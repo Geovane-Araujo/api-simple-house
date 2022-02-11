@@ -36,8 +36,6 @@ public class RegisterService {
             helper.setSubject("Olá seja Bem vindo");
             helper.setText(onTextHtml("5565654"),true);
             helper.setTo(user.getEmail());
-            //mail.setContent(onTextHtml("5565654"),"text/html");
-            mail.saveChanges();
             mailSender.send(mail);
 
         } catch (MessagingException e) {
