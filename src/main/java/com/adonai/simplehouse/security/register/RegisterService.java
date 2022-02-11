@@ -3,6 +3,8 @@ package com.adonai.simplehouse.security.register;
 import com.adonai.simplehouse.model.Users;
 import com.adonai.simplehouse.util.GlobalVariables;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
@@ -16,43 +18,28 @@ public class RegisterService {
     @Autowired
     RegisterRepository registerRepository;
 
+    @Autowired
+    private JavaMailSender mailSender;
+
     public void onSaveRegister(Users user){
         registerRepository.save(user, GlobalVariables.dbName+"master");
     }
 
-    public void onSendEmailConfirmation(Users user){
-        String to = user.getEmail();
+    public void onSendEmailConfirmation(Users user) {
 
-        String from = "noreply@adonaisoft.com.br";
-        String userName = "Simple House";
-        String password = "553322@@##";
+        MimeMessage mail = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mail);
 
-        String host = "mail.adonaisoft.com.br";
+        try {
 
-        Properties props = new Properties();
-        props.put("mail.smtp.auth","true");
-        props.put("mail.smtp.host", host);
-        props.put("mail.smtp.port", "465");
+            helper.setFrom("noreply@adonaisoft.com.br");
+            helper.setSubject("Olá seja Bem vindo");
+            helper.setText("<h1>Thunai</h1>",true);
+            helper.setTo(user.getEmail());
+            mailSender.send(mail);
 
-        Session session = Session.getInstance(props, new javax.mail.Authenticator(){
-            protected PasswordAuthentication getPasswordAuthentication(){
-                return new PasswordAuthentication("Simple House","553322@@##");
-            }
-        });
-
-        try{
-            Message message = new MimeMessage(session);
-
-            message.setFrom(new InternetAddress(from));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-            message.setSubject("Casa Simples");
-
-            message.setContent("<h1>Olá é um teste</h1>","text/html");
-            Transport.send(message);
-
-        }  catch (MessagingException ex){
-            ex.printStackTrace();
-            throw new RuntimeException(ex);
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 
