@@ -49,7 +49,11 @@
             <artifactId>mail</artifactId>
             <version>1.5.0-b01</version>
         </dependency>
-
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.10</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -63,7 +67,7 @@
         <dependency>
             <groupId>org.atom</groupId>
             <artifactId>atom-framework</artifactId>
-            <version>3.0</version>
+            <version>3.0.3</version>
         </dependency>
     </dependencies>
 

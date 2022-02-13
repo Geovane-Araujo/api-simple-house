@@ -1,6 +1,7 @@
 package com.adonai.simplehouse.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jatom.anotations.Id;
 import com.jatom.anotations.TableName;
 import lombok.Getter;
