@@ -1,6 +1,7 @@
 package com.adonai.simplehouse.security.register;
 
 import com.adonai.simplehouse.model.Users;
+import com.adonai.simplehouse.util.CreatedSchema;
 import com.adonai.simplehouse.util.ResourceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,5 @@ public class RegisterController {
         String a = registerService.onSendEmailConfirmation(user);
         user.setSenha("");
         return ResponseEntity.status(200).body(a);
-
-
     }
 }
